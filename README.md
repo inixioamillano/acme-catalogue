@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ACME Catalogue
 
-## Available Scripts
+This Web Application provides a movie and TV shows catalogue where authenticated users can rate the content. Logged and unlogged users can look for contents on the catalogue. To do so, they can scroll along the catalogue or use the search box. This search box shows suggestions in real time. You can filter the content by type (Movies or TV Shows) and sort the items alphabetically. When the user clicks on a item in the catalogue, a detailed view will be shown. The detailed view includes a description of the selected movie or TV show, the average rating and the distribution of the users' ratings. Logged users can send or update their rating. Unlogged users will see a message asking them to log in in order to rate the show.
 
-In the project directory, you can run:
+## How to run the project
+
+## Data and authentication server
+
+First of all you need to start the data and authentication server. To do so, move from the root directory to the server folder.
+
+### `cd server`
+
+You might need to install the dependencies
+
+### `npm install`
+
+After installing the dependencies, you can start the server
+
+### `node index.js`
+
+You should see a "ACME server listening on port 4000"
+
+## React App
+
+In another terminal, move to the project root directory and install the necessary dependencies
+
+### `npm install`
+
+Finally, run the app
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Testing the app
 
-### `npm test`
+To run the unit and integration tests, run:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm run test`
 
-### `npm run build`
+## Environment variables
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can configure the project by modifying the .env file. In this file you can set 2 properties
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+ · REACT_APP_SERVER_IP: The IP where the server is running (default: localhost, you can set the IP where the server is running to be accessible for the React app from any device in the LAN)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ · REACT_APP_THEME: The color of the main bar (default: custom, posible values: light (color: light grey), dark (color: black) and custom (color: predefined theme))
 
-### `npm run eject`
+## Available users and passwords
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+| Username      | Password      |
+| ------------- |:-------------:|
+| luis1997      | luis123       |
+| jesus.mendez  | iamjesus      |
+| john_smith    | jsmithpass    |
