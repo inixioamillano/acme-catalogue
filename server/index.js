@@ -87,7 +87,7 @@ app.get('/detailed/:id', (req, res) => {
     if (detailed){
         res.json(detailed)
     } else {
-        res.sendStatus(404)
+        res.json({message: "Not found"})
     }
 })
 
@@ -103,7 +103,7 @@ app.post('/rate', protectedRoutes, (req, res) => {
         item.ratings = ratings.concat({by: username, rating})
         res.json(item);
     }else{
-        res.sendStatus(404)
+        res.json({message: "Not found"})
     }
 })
 

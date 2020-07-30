@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router';
 import StarsRatingComponent from '../components/StarsRatingComponent';
 import MainBar from '../components/MainBar';
+import NotFound from './NotFound';
 
 type DeatiledViewParams = {
     id: string
@@ -13,17 +14,27 @@ function DetailedView({match}: DetailedViewProps) {
 
     const [details, setDetails] = useState({title: '', description: '', ratings: []});
     const [loading, setLoading] = useState(true)
+    const [notFound, setNotFound] = useState(false)
     useEffect(()=>{
         fetch(`http://${process.env.REACT_APP_SERVER_IP}:4000/detailed/${match.params.id}`)
-        .then(res => res.json().then(json => {
-            setDetails(json)
-            setLoading(false)
-        }))
+            .then(res => {
+                res.json().then(json => {
+                    if (json.message){
+                        setNotFound(true)
+                    } else {
+                        setDetails(json)
+                        setLoading(false)
+                    }
+                })
+        })
         .catch((e)=> {
             console.log(e)
         });
     }, [match.params.id])
 
+    if (notFound){
+        return <NotFound/>
+    }
     if (loading) {
         return <div className="centered">Loading...</div>
     }else {
