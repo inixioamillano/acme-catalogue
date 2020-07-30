@@ -5,16 +5,58 @@ const express = require('express'),
     cors = require("cors"); 
 
 const categories = {
-    MOVIE: "MOVIE",
-    TV_SHOW: "TV_SHOW"
+    MOVIE: "Movies",
+    TV_SHOW: "TV Shows"
+}
+
+const genres = {
+    ADVENTURE: 'Adventure',
+    MUSICAL: 'Musical',
+    ANIMATION: 'Animation',
+    SITCOM: 'Sitcom',
+    TERROR: 'Terror'
 }
 
 let data = [
-    {id: "DocWho", title: "Doctor Who", description: "One of the most iconic british TV Shows", ratings: [{by: "jesus.mendez", rating: 4}, {by: "john_smith", rating: 5}, {by: 'luis1997', rating: 4}], pic: "https://artworks.thetvdb.com/banners/posters/78804-52.jpg", category: categories.TV_SHOW},
-    {id: "MamMia", title: "Mamma Mia!", description: "You are getting married tomorrow. You don't really know who your father is, so you invite three candidates keeping it as a secret to your mom. For no apparent reason, everyone in the island spends the whole day singing ABBA's songs.", ratings: [{by: "john_smith", rating: 5}], pic: "https://artworks.thetvdb.com/banners/movies/468/posters/468.jpg", category: categories.MOVIE},
-    {id: "Toy", title: "Toy Story", description: "To Infinity and beyond!", ratings: [], pic: "https://artworks.thetvdb.com/banners/movies/318/posters/318.jpg", category: categories.MOVIE},
-    {id: "MMHWGA", title: "Mamma Mia! Here We Go Again", description: "10 years later, you keep singing ABBA's songs", ratings: [{by: "john_smith", rating: 4}], pic: "https://artworks.thetvdb.com/banners/movies/385/posters/385.jpg", category: categories.MOVIE},
-    {id: "ODAAT", title: "One Day at a Time", description: "A sitcom about a cuban-american family living in Los Angeles", ratings: [{by: "luis1997", rating: 4}], pic: "https://artworks.thetvdb.com/banners/posters/318363-3.jpg", category: categories.TV_SHOW}
+    {
+        id: "DocWho", 
+        title: "Doctor Who", 
+        description: "One of the most iconic british TV Shows", 
+        ratings: [{by: "jesus.mendez", rating: 4}, {by: "john_smith", rating: 5}, {by: 'luis1997', rating: 4}], 
+        pic: "https://artworks.thetvdb.com/banners/posters/78804-52.jpg", 
+        category: categories.TV_SHOW,
+        genres: [genres.ADVENTURE]
+    },{
+        id: "MamMia", 
+        title: "Mamma Mia!", 
+        description: "You are getting married tomorrow. You don't really know who your father is, so you invite three candidates keeping it as a secret to your mom. For no apparent reason, everyone in the island spends the whole day singing ABBA's songs.", 
+        ratings: [{by: "john_smith", rating: 5}], pic: "https://artworks.thetvdb.com/banners/movies/468/posters/468.jpg", 
+        category: categories.MOVIE,
+        genres: [genres.MUSICAL]
+    },{
+        id: "Toy", title: "Toy Story", 
+        description: "To Infinity and beyond!", 
+        ratings: [], 
+        pic: "https://artworks.thetvdb.com/banners/movies/318/posters/318.jpg", 
+        category: categories.MOVIE,
+        genres: [genres.ADVENTURE, genres.ANIMATION]
+    },{
+        id: "MMHWGA", 
+        title: "Mamma Mia! Here We Go Again", 
+        description: "10 years later, you keep singing ABBA's songs", 
+        ratings: [{by: "john_smith", rating: 4}], 
+        pic: "https://artworks.thetvdb.com/banners/movies/385/posters/385.jpg", 
+        category: categories.MOVIE,
+        genres: [genres.MUSICAL]
+    },{
+        id: "ODAAT", 
+        title: "One Day at a Time", 
+        description: "A sitcom about a cuban-american family living in Los Angeles", 
+        ratings: [{by: "luis1997", rating: 4}], 
+        pic: "https://artworks.thetvdb.com/banners/posters/318363-3.jpg", 
+        category: categories.TV_SHOW,
+        genres: [genres.SITCOM]
+    }
 ]
 
 const users = [{

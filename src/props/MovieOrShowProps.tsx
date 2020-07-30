@@ -9,7 +9,8 @@ type MovieOrShowProps = {
     description: string,
     ratings: Array<ratingProps>,
     pic: string,
-    category: string
+    category: string,
+    genres: Array<string>
 }
 
 export default MovieOrShowProps;

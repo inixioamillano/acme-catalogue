@@ -43,6 +43,22 @@ a {
   color: black;
 }
 
+.nav-vaar-custom {
+  background-color: #5de6de;
+  background-image: linear-gradient(315deg, #5de6de 0%, #b58ecc 74%);
+  color: black;
+}
+
+.nav-var-dark {
+  background-color: #343A40;
+  color: white;
+}
+
+.nav-var-light {
+  background-color: #F8F9FA;
+  color: black;
+}
+
 .mainbar {
   background-color: #5de6de;
   background-image: linear-gradient(315deg, white 0%, #b58ecc 40%);

@@ -11,21 +11,13 @@ const orderCriteria = {
 }
 
 const filters = {
-    NONE: 'NONE',
-    MOVIE: 'MOVIE',
-    TV_SHOW: 'TV_SHOW'
+    NONE: 'All',
+    MOVIE: 'Movies',
+    TV_SHOW: 'TV Shows'
 }
 
-const filterText = (filter: string) => {
-    switch(filter){
-        case filters.MOVIE:
-            return 'Movies';
-        case filters.TV_SHOW:
-            return 'TV Shows';
-        default:
-            return 'All';
-    }
-}
+const genres = ['Adventure', 'Musical', 'Animation', 'Sitcom', 'Terror']
+
 
 export default function Catalogue({catalogue}: CatalogueProps) {
     const [cat, setCat] = useState([])
@@ -48,6 +40,10 @@ export default function Catalogue({catalogue}: CatalogueProps) {
         return <div className="centered">Loading...</div>
     }
 
+    const itemsToShow = cat.filter((item: MovieOrShowProps) => item.title.toLowerCase().includes(search.toLowerCase()))
+        .filter((item: MovieOrShowProps) => (filter === filters.NONE || item.category === filter || item.genres.includes(filter)))
+        .sort((a: MovieOrShowProps, b: MovieOrShowProps) => orderBy === orderCriteria.ALPHABETICAL ? a.title === b.title ? 0 : a.title < b.title ? -1 : 1 : 1);
+
     return (
         <div>
             <MainBar/>
@@ -55,12 +51,15 @@ export default function Catalogue({catalogue}: CatalogueProps) {
                 <DropdownButton
                     as={InputGroup.Append}
                     variant="outline-secondary"
-                    title={filterText(filter)}
+                    title={filter}
                     id="input-group-dropdown-2"
                     >
-                    <Dropdown.Item onSelect={() => setFilter(filters.NONE)}>All</Dropdown.Item>
+                    <Dropdown.Item onSelect={() => {setFilter(filters.NONE)}}>All</Dropdown.Item>
+                    <Dropdown.Divider/>
                     <Dropdown.Item onSelect={() => setFilter(filters.MOVIE)}>Movies</Dropdown.Item>
                     <Dropdown.Item onSelect={() => setFilter(filters.TV_SHOW)}>TV Shows</Dropdown.Item>
+                    <Dropdown.Divider/>
+                    {genres.map(g => <Dropdown.Item onSelect={()=>setFilter(g)}>{g}</Dropdown.Item>)}
                 </DropdownButton>
                 <FormControl
                     onFocus={()=>setShowSuggestions(true)}
@@ -91,18 +90,16 @@ export default function Catalogue({catalogue}: CatalogueProps) {
                     onChange={()=>{setOrderBy(orderBy === orderCriteria.ALPHABETICAL ? orderCriteria.NONE : orderCriteria.ALPHABETICAL)}}
                 />
             </Form>
+            {itemsToShow.length > 0 ?
             <Container>
                 <Row>
-                    {cat.filter((item: MovieOrShowProps) => item.title.toLowerCase().includes(search.toLowerCase()))
-                        .filter((item: MovieOrShowProps) => (filter === filters.NONE || item.category === filter))
-                        .sort((a: MovieOrShowProps, b: MovieOrShowProps) => orderBy === orderCriteria.ALPHABETICAL ? a.title === b.title ? 0 : a.title < b.title ? -1 : 1 : 1)
-                        .map((item: MovieOrShowProps) => {
+                    {itemsToShow.map((item: MovieOrShowProps) => {
                             return <Col xs={6} md={4} style={{marginTop: "5%"}}>
                                 <CatalogueThumbnail item={item}/>
                             </Col>
                     })}
                 </Row>
-            </Container>
+            </Container> : <h2 className="centered">No results found for the current search filters</h2>}
         </div>
     )
 }
