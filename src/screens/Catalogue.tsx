@@ -59,7 +59,7 @@ export default function Catalogue({catalogue}: CatalogueProps) {
                     <Dropdown.Item onSelect={() => setFilter(filters.MOVIE)}>Movies</Dropdown.Item>
                     <Dropdown.Item onSelect={() => setFilter(filters.TV_SHOW)}>TV Shows</Dropdown.Item>
                     <Dropdown.Divider/>
-                    {genres.map(g => <Dropdown.Item onSelect={()=>setFilter(g)}>{g}</Dropdown.Item>)}
+                    {genres.map(g => <Dropdown.Item key={g} onSelect={()=>setFilter(g)}>{g}</Dropdown.Item>)}
                 </DropdownButton>
                 <FormControl
                     onFocus={()=>setShowSuggestions(true)}
@@ -94,7 +94,7 @@ export default function Catalogue({catalogue}: CatalogueProps) {
             <Container>
                 <Row>
                     {itemsToShow.map((item: MovieOrShowProps) => {
-                            return <Col xs={6} md={4} style={{marginTop: "5%"}}>
+                            return <Col key={item.id} xs={6} md={4} style={{marginTop: "5%"}}>
                                 <CatalogueThumbnail item={item}/>
                             </Col>
                     })}
