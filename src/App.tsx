@@ -7,7 +7,6 @@ import DetailedView from './screens/DetailedView';
 import Login from './screens/Login';
 function App() {
   require('dotenv').config()
-  console.log(process)
   return (
     <div>
         <BrowserRouter>
